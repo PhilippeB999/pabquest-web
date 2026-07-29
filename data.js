@@ -57,29 +57,29 @@ const COMPETENCIES = [
     "level": 1,
     "questions": [
      {
-      "fr": "Quel organisme réglemente la profession de PAB au Québec?",
-      "en": "Quel organisme réglemente la profession de PAB au Québec?",
+      "fr": "Le métier de préposé aux bénéficiaires (PAB) au Québec est-il régi par un ordre professionnel?",
+      "en": "Le métier de préposé aux bénéficiaires (PAB) au Québec est-il régi par un ordre professionnel?",
       "choices": [
        {
-        "fr": "OIIQ",
-        "en": "OIIQ"
-       },
-       {
-        "fr": "MSSS",
-        "en": "MSSS"
-       },
-       {
-        "fr": "CISSS/CIUSSS",
-        "en": "CISSS/CIUSSS",
+        "fr": "Non, ce n'est pas une profession à ordre professionnel",
+        "en": "Non, ce n'est pas une profession à ordre professionnel",
         "correct": true
        },
        {
-        "fr": "CNO",
-        "en": "CNO"
+        "fr": "Oui, l'OIIQ",
+        "en": "Oui, l'OIIQ"
+       },
+       {
+        "fr": "Oui, l'OIIAQ",
+        "en": "Oui, l'OIIAQ"
+       },
+       {
+        "fr": "Oui, le MSSS",
+        "en": "Oui, le MSSS"
        }
       ],
-      "explFr": "Les CISSS/CIUSSS supervisent l'embauche et les pratiques des PAB dans leurs établissements.",
-      "explEn": "Les CISSS/CIUSSS supervisent l'embauche et les pratiques des PAB dans leurs établissements."
+      "explFr": "Le PAB n'est pas régi par un ordre professionnel. Il travaille sous la supervision de l'équipe soignante (souvent l'infirmière) et doit respecter son champ de pratique et la confidentialité.",
+      "explEn": "Le PAB n'est pas régi par un ordre professionnel. Il travaille sous la supervision de l'équipe soignante (souvent l'infirmière) et doit respecter son champ de pratique et la confidentialité."
      },
      {
       "fr": "Qu'est-ce que le secret professionnel implique pour le PAB?",
