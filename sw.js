@@ -2,7 +2,7 @@
    Au premier chargement, il met en cache tous les fichiers de l'app.
    Ensuite, l'app se lance sans réseau, exactement comme une app native. */
 
-const CACHE = "pabquest-v10";
+const CACHE = "pabquest-v11";
 const ASSETS = [
   "index.html",
   "app.js",
