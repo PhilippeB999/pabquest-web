@@ -148,6 +148,10 @@ function escapeHtml(str) {
 /* Le logo de CFP doit en plus être une vraie URL http(s) — sinon on
    l'ignore plutôt que de risquer un schéma javascript:/data: dans un src. */
 function safeImageUrl(url) {
+  // Sans logo (chaîne vide, null, undefined d'un ancien état) : AUCUNE image.
+  // Sans ce garde, new URL("", location.href) renvoie l'adresse de la page
+  // elle-même, qui passait le test http(s) et donnait une image cassée.
+  if (typeof url !== "string" || !url.trim()) return "";
   try {
     const u = new URL(url, location.href);
     return (u.protocol === "https:" || u.protocol === "http:") ? u.href : "";
