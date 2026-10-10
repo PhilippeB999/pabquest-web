@@ -534,6 +534,8 @@ function render() {
   recordLogin();
   if (!state.totem) {
     renderOnboarding();
+  } else if (typeof msgEcranOuvert !== "undefined" && msgEcranOuvert) {
+    renderMessagerie();   // messagerie.js — messages de l'enseignant
   } else if (showClassJoin) {
     renderClassJoin();
   } else if (currentQuest && currentQuest.__showIntro) {
@@ -561,7 +563,7 @@ function header(activeTab) {
       </div>
     </div>
     <div class="topbar-actions">
-      <button class="reset-btn" onclick="goClassJoin()" title="${state.lang==='fr'?'Ma classe':'My class'}">👥</button>
+      <button class="reset-btn" onclick="goClassJoin()" title="${state.lang==='fr'?'Ma classe':'My class'}">👥<span data-msg-slot="point">${typeof msgPointHTML === "function" ? msgPointHTML() : ""}</span></button>
       <button class="lang-btn" onclick="toggleLang()">${t("switchLang")}</button>
       <button class="reset-btn" onclick="resetProgress()" title="${t('resetProgress')}">🔄</button>
     </div>
@@ -940,6 +942,7 @@ function joinClass() {
     saveState();
     if (state.shared) syncProgress();   // première remontée
     closeClassJoin();
+    if (typeof msgRelire === "function") msgRelire();   // messages de l'enseignant (si partage)
   });
 }
 
@@ -1094,6 +1097,7 @@ function renderClassJoin() {
         ${state.programme ? `<div class="cfp-prog">${escapeHtml(state.programme)}</div>` : ""}
       </div>
     </div>` : ""}
+    <div data-msg-slot="classe">${typeof msgClasseHTML === "function" ? msgClasseHTML() : ""}</div>
     <p class="welcome-intro">${fr
       ? "Ton enseignant t'a remis un code ? Saisis-le pour rejoindre ta classe. L'application fonctionne pareil avec ou sans."
       : "Got a code from your teacher? Enter it to join your class. The app works the same with or without."}</p>
@@ -1164,6 +1168,7 @@ function renderMap() {
 
   root.innerHTML = header("map") + `
     <div class="content">
+      <div data-msg-slot="banniere">${typeof msgBanniereHTML === "function" ? msgBanniereHTML() : ""}</div>
       <div class="vehicle-showcase">
         <div class="vehicle-frame" style="height:auto;padding:24px 0">${avatarSVG(av.id, state.avatarColor, stg, 120)}</div>
         <div class="vehicle-caption">${avName} · ${maxed ? t("maxSize") : t("vehicleGrows")}</div>
@@ -1742,6 +1747,7 @@ flushSync();   // vide une éventuelle file en attente d'un envoi précédent
 enregistrerLancement();   // statistiques d'usage : un lancement par session
 maybeBackfillCfp();   // récupère le nom du CFP si l'élève est déjà rattaché sans nom
 applyUrlCode();   // rattache l'élève automatiquement si un ?code= est présent dans le lien
+if (typeof msgDemarrer === "function") msgDemarrer();   // messagerie.js : relecture des messages de l'enseignant
 
 /* PWA service worker */
 if ("serviceWorker" in navigator) {
